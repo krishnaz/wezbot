@@ -1,8 +1,9 @@
 #!/usr/bin/python
 import subprocess
+import os.system:
     
 #fo = open("/etc/cron.d/wezbot", "wb")
-#fo.write("@reboot /home/pi/wezbot/updater.py");
+#fo.write("@reboot /home/pi/wezbot/code/updater.py");
 #fo.close()
 
 command = ["git", "fetch", "origin"]
@@ -11,9 +12,8 @@ command = ["git", "pull", "origin", "master"]
 subprocess.check_output(command)
 #pull from git
 
+execfile("python /home/pi/wezbot/code/wezbot.py")
 
-`wezbot.py`
-# run main
 
 
 
