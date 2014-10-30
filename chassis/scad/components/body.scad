@@ -1,31 +1,7 @@
+include <../config.scad>
 
-bodyLength=200;
-bodyWidth=100;
-bodyLowerHeight=30;
-bodyUpperHeight=10;
-
-bodyThickness = 5;
-bodyLowerFrontSlopeLength=40;
-bodyLowerFrontSlopeHeight=20;
-bodyLowerBackSlopeLength=25;
-bodyLowerBackSlopeHeight=25;
-
-bodyUpperFrontSlopeLength=60;
-bodyUpperFrontSlopeHeight=6;
-bodyUpperBackSlopeLength=10;
-bodyUpperBackSlopeHeight=6;
-holeLocations=[
-[((bodyWidth/2)-bodyThickness-6+2),-bodyLength/2+6+bodyThickness+bodyUpperBackSlopeLength,0],
-[-((bodyWidth/2)-bodyThickness-6+2),-bodyLength/2+6+bodyThickness+bodyUpperBackSlopeLength,0],
-[((bodyWidth/2)-bodyThickness-6+2),(bodyLength/2)-6-bodyThickness-bodyUpperFrontSlopeLength,0],
-[-((bodyWidth/2)-bodyThickness-6+2),(bodyLength/2)-6-bodyThickness-bodyUpperFrontSlopeLength,0]
-];
-d=0.1;
-$fn=30;
-
-%lowerBodySection();
-translate([0,0,bodyLowerHeight])
-	upperBodySection();
+lowerBodySection();
+//translate([0,0,bodyLowerHeight])upperBodySection();
 cube([1,1,1]);
 
 module lowerBodySection(){
@@ -37,6 +13,18 @@ holloweAngledBlockSection(
 	 	insetFrontz=bodyLowerFrontSlopeHeight, 
 	 	insetBacky=bodyLowerBackSlopeLength,
 	 	insetBackz=bodyLowerBackSlopeHeight);
+	   // pillars
+		
+		translate([0,0,bodyLowerHeight-10])
+		for(index=[0:len(holeLocations)-1]){
+			translate(holeLocations[index]){	
+				difference(){
+				cylinder(h=10,r=6);
+				translate([0,0,-d])
+					cylinder(h=10+2*d,r=2);
+				}
+			}
+		}
 }
 
 module upperBodySection(){
