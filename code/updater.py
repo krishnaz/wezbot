@@ -1,10 +1,10 @@
 #!/usr/bin/python
 import subprocess
 
-print "Setting Cron"
-fo = open("/etc/cron.d/wezbot", "wb")
-fo.write("@reboot /home/pi/wezbot/code/updater.py");
-fo.close()
+#print "Setting Cron"
+#fo = open("/etc/cron.d/wezbot", "wb")
+#fo.write("@reboot python /home/pi/wezbot/code/updater.py > /home/pi/wezbot/code/updater.log");
+#fo.close()
 
 
 print "Updating"
