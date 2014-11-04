@@ -1,6 +1,6 @@
 bodyLength=200;
 bodyWidth=100;
-bodyLowerHeight=30;
+bodyLowerHeight=45;
 bodyUpperHeight=10;
 
 bodyThickness = 5;
