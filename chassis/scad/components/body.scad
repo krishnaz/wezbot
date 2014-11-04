@@ -1,7 +1,7 @@
 include <../config.scad>
 
 lowerBodySection();
-//translate([0,0,bodyLowerHeight])upperBodySection();
+translate([0,0,bodyLowerHeight])upperBodySection();
 cube([1,1,1]);
 
 module lowerBodySection(){
@@ -20,8 +20,8 @@ holloweAngledBlockSection(
 			translate(holeLocations[index]){	
 				difference(){
 				cylinder(h=10,r=6);
-				translate([0,0,-d])
-					cylinder(h=10+2*d,r=2);
+				//translate([0,0,-d])
+					//cylinder(h=10+2*d,r=2);
 				}
 			}
 		}
@@ -48,12 +48,12 @@ module upperBodySection(){
 			}
 		}	
 		//cut outs
-		for(index=[0:len(holeLocations)-1]){
-				translate(holeLocations[index]){
-					screwCutout(height=bodyUpperHeight, radius=6);				
-				}
+	//	for(index=[0:len(holeLocations)-1]){
+			//	translate(holeLocations[index]){
+				//	screwCutout(height=bodyUpperHeight, radius=6);				
+			//	}
 					
-		}
+		//}
 	}
 }
 
