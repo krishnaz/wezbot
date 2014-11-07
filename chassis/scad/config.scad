@@ -1,3 +1,6 @@
+
+
+
 bodyLength=200;
 bodyWidth=100;
 bodyLowerHeight=45;
@@ -14,10 +17,23 @@ bodyUpperFrontSlopeHeight=6;
 bodyUpperBackSlopeLength=10;
 bodyUpperBackSlopeHeight=6;
 holeLocations=[
-[((bodyWidth/2)-bodyThickness-6+2),-bodyLength/2+6+bodyThickness+bodyUpperBackSlopeLength,0],
-[-((bodyWidth/2)-bodyThickness-6+2),-bodyLength/2+6+bodyThickness+bodyUpperBackSlopeLength,0],
-[((bodyWidth/2)-bodyThickness-6+2),(bodyLength/2)-6-bodyThickness-bodyUpperFrontSlopeLength,0],
-[-((bodyWidth/2)-bodyThickness-6+2),(bodyLength/2)-6-bodyThickness-bodyUpperFrontSlopeLength,0]
+	[((bodyWidth/2)-bodyThickness-6+2),-bodyLength/2+6+bodyThickness+bodyUpperBackSlopeLength*2,0],
+	[-((bodyWidth/2)-bodyThickness-6+2),-bodyLength/2+6+bodyThickness+bodyUpperBackSlopeLength*2,0],
+	[((bodyWidth/2)-bodyThickness-6+2),(bodyLength/2)-6-bodyThickness-bodyUpperFrontSlopeLength,0],
+	[-((bodyWidth/2)-bodyThickness-6+2),(bodyLength/2)-6-bodyThickness-bodyUpperFrontSlopeLength,0]
 ];
+
+
+//whwere the drive wheels are located
+wheelDrivePositionZ=35;
+wheelDrivePositionY=85;
+axilRadius=5;
+axilClearance=0.5;
+
+wheelClearance=0.5;
 d=0.1;
 $fn=30;
+
+
+
+

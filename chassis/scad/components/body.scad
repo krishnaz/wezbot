@@ -1,10 +1,12 @@
 include <../config.scad>
 
 lowerBodySection();
-translate([0,0,bodyLowerHeight])upperBodySection();
-cube([1,1,1]);
+translate([0,0,bodyLowerHeight+100])
+	upperBodySection();
 
 module lowerBodySection(){
+difference(){
+union(){
 holloweAngledBlockSection(
 		length=bodyLength, 
 		width=bodyWidth, 
@@ -20,11 +22,19 @@ holloweAngledBlockSection(
 			translate(holeLocations[index]){	
 				difference(){
 				cylinder(h=10,r=6);
-				//translate([0,0,-d])
-					//cylinder(h=10+2*d,r=2);
+				translate([0,0,-d])
+					cylinder(h=10+2*d,r=2);
 				}
 			}
 		}
+}
+		translate([-bodyWidth/2-d,wheelDrivePositionY,wheelDrivePositionZ])
+			rotate(v=[0,1,0], a= 90)
+				cylinder(h=bodyWidth+2*d, r=axilRadius+axilClearance);
+		translate([-bodyWidth/2-d,-wheelDrivePositionY,wheelDrivePositionZ])
+			rotate(v=[0,1,0], a= 90)
+				cylinder(h=bodyWidth+2*d, r=axilRadius+axilClearance);
+}
 }
 
 module upperBodySection(){
@@ -48,12 +58,12 @@ module upperBodySection(){
 			}
 		}	
 		//cut outs
-	//	for(index=[0:len(holeLocations)-1]){
-			//	translate(holeLocations[index]){
-				//	screwCutout(height=bodyUpperHeight, radius=6);				
-			//	}
+		for(index=[0:len(holeLocations)-1]){
+				translate(holeLocations[index]){
+					screwCutout(height=bodyUpperHeight, radius=6);				
+				}
 					
-		//}
+		}
 	}
 }
 
