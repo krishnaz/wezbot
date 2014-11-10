@@ -1,43 +1,32 @@
-
-//Stated
-Width=35;
-Radius=20;
-InnerGroveWidth=6;
-InnerGroveDepth= 3;
-InnerGroveBevel=2;
-OuterBevelWidth=2;
-OuterBevelDepth=1;
-d=1;
-
-$fn=20;
+include <../config.scad>
 
 //Calculated
-RollerHalfWidth= (Width-InnerGroveWidth)/2-InnerGroveBevel;
+RollerHalfWheelWidth= (WheelWidth-WheelInnerGroveWidth)/2-WheelInnerBevelWidth;
 
 wheel();
 
-//%cylinder(r=Radius, h=Width);
+//%cylinder(r=WheelRadius, h=WheelWidth);
 module wheel() {	
 	
 	runner();
-	translate([0,0,Width])
+	translate([0,0,WheelWidth])
 	mirror([0,0,1])
 		runner();
 
 	//middle
-	translate([0,0,RollerHalfWidth+InnerGroveBevel])
-		cylinder(r=Radius-InnerGroveDepth, h=InnerGroveWidth);
+	translate([0,0,RollerHalfWheelWidth+WheelInnerBevelWidth])
+		cylinder(r=WheelRadius-WheelInnerBevelDepth, h=WheelInnerGroveWidth);
 }
 
 module runner(){
 //wheel side
-	translate([0,0,OuterBevelWidth])
-		cylinder(r=Radius, h=RollerHalfWidth-OuterBevelWidth);
+	translate([0,0,WheelOuterBevelWidth])
+		cylinder(r=WheelRadius, h=RollerHalfWheelWidth-WheelOuterBevelWidth);
 
 	//inner bevel
-	translate([0,0,RollerHalfWidth])
-		cylinder(r1=Radius, r2=Radius-InnerGroveDepth, h=InnerGroveBevel);
+	translate([0,0,RollerHalfWheelWidth])
+		cylinder(r1=WheelRadius, r2=WheelRadius-WheelInnerBevelDepth, h=WheelInnerBevelWidth);
 
 	//outer bevel
-		cylinder(r1=Radius-OuterBevelDepth, r2=Radius, h=OuterBevelWidth);
+		cylinder(r1=WheelRadius-WheelOuterBevelDepth, r2=WheelRadius, h=WheelOuterBevelWidth);
 }
