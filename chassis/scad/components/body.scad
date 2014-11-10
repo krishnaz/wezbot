@@ -1,40 +1,46 @@
 include <../config.scad>
 
+use <screwGrip.scad>
+
 lowerBodySection();
-translate([0,0,bodyLowerHeight+100])
-	upperBodySection();
+//translate([0,0,bodyLowerHeight+100])
+	//upperBodySection();
 
 module lowerBodySection(){
-difference(){
-union(){
-holloweAngledBlockSection(
-		length=bodyLength, 
-		width=bodyWidth, 
-	 	height=bodyLowerHeight,
-	 	insetFronty=bodyLowerFrontSlopeLength,
-	 	insetFrontz=bodyLowerFrontSlopeHeight, 
-	 	insetBacky=bodyLowerBackSlopeLength,
-	 	insetBackz=bodyLowerBackSlopeHeight);
-	   // pillars
-		
-		translate([0,0,bodyLowerHeight-10])
-		for(index=[0:len(holeLocations)-1]){
-			translate(holeLocations[index]){	
-				difference(){
-				cylinder(h=10,r=6);
-				translate([0,0,-d])
-					cylinder(h=10+2*d,r=2);
-				}
+	difference(){
+		union(){
+			holloweAngledBlockSection(
+			length=bodyLength, 
+			width=bodyWidth, 
+		 	height=bodyLowerHeight,
+		 	insetFronty=bodyLowerFrontSlopeLength,
+		 	insetFrontz=bodyLowerFrontSlopeHeight, 
+		 	insetBacky=bodyLowerBackSlopeLength,
+		 	insetBackz=bodyLowerBackSlopeHeight);
+		   // pillars
+			
+			translate([(bodyWidth/2)-bodyThickness-5,0,bodyLowerHeight-10]){
+				screwGrip(depth=10,holeRadius=3,length=5,thickness=3);
 			}
+			
+			translate([0,0,bodyLowerHeight-10])
+				for(index=[0:len(holeLocations)-1]){
+					translate(holeLocations[index]){	
+						difference(){
+						cylinder(h=10,r=6);
+						translate([0,0,-d])
+							cylinder(h=10+2*d,r=2);
+						}
+					}
+				}
 		}
-}
 		translate([-bodyWidth/2-d,wheelDrivePositionY,wheelDrivePositionZ])
 			rotate(v=[0,1,0], a= 90)
 				cylinder(h=bodyWidth+2*d, r=axilRadius+axilClearance);
 		translate([-bodyWidth/2-d,-wheelDrivePositionY,wheelDrivePositionZ])
 			rotate(v=[0,1,0], a= 90)
 				cylinder(h=bodyWidth+2*d, r=axilRadius+axilClearance);
-}
+	}
 }
 
 module upperBodySection(){

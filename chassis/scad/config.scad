@@ -25,10 +25,22 @@ holeLocations=[
 
 
 //whwere the drive wheels are located
+
+WheelWidth=35;
+WheelRadius=20;
+WheelInnerGroveWidth=6;
+WheelInnerBevelDepth= 3;
+WheelInnerBevelWidth=2;
+WheelOuterBevelWidth=2;
+WheelOuterBevelDepth=1;
+
+
 wheelDrivePositionZ=35;
 wheelDrivePositionY=85;
 axilRadius=5;
 axilClearance=0.5;
+axilLength=40;
+
 
 wheelClearance=0.5;
 d=0.1;

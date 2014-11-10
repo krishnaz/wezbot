@@ -1,9 +1,13 @@
 include <config.scad>
 use <components/body.scad>
+use <props/R-Pi.scad>
 use <components/driveWheel.scad>
 
 
 chassis();
+translate([30,-30,40])
+rotate(v=[0,0,1], a = 90)
+pi();
 
 
 module chassis(){
@@ -11,7 +15,7 @@ module chassis(){
 lowerBodySection();
 
 //translate([0,0,bodyLowerHeight])
-//	upperBodySection();
+	//upperBodySection();
 translate([0,wheelDrivePositionY,0])
 	placedwheels();
 translate([0,-wheelDrivePositionY,0])
